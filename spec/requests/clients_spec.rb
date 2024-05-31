@@ -11,9 +11,9 @@ RSpec.describe "/clients", type: :request do
 
   let(:invalid_attributes) {
     {
-      nome: 123,
-      sobrenome: 45464,
-      endereco: 12,
+      nome: "123",
+      sobrenome: "45464",
+      endereco: "12",
     }
   }
 
@@ -58,7 +58,7 @@ RSpec.describe "/clients", type: :request do
       it "does not create a new Client" do
         expect {
           post clients_url,
-               params: { client: invalid_attributes }, as: :json
+               params: { client: invalid_attributes }, headers: valid_headers, as: :json
         }.to change(Client, :count).by(0)
       end
 
@@ -74,7 +74,11 @@ RSpec.describe "/clients", type: :request do
   describe "PATCH /update" do
     context "with valid parameters" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        {
+          nome: "João",
+          sobrenome: "Silva",
+          endereco: "Rua Nova"
+        }
       }
 
       it "updates the requested client" do
@@ -82,7 +86,9 @@ RSpec.describe "/clients", type: :request do
         patch client_url(client),
               params: { client: new_attributes }, headers: valid_headers, as: :json
         client.reload
-        skip("Add assertions for updated state")
+        expect(client.nome).to eq("João")
+        expect(client.sobrenome).to eq("Silva")
+        expect(client.endereco).to eq("Rua Nova")
       end
 
       it "renders a JSON response with the client" do
@@ -95,22 +101,4 @@ RSpec.describe "/clients", type: :request do
     end
 
     context "with invalid parameters" do
-      it "renders a JSON response with errors for the client" do
-        client = Client.create! valid_attributes
-        patch client_url(client),
-              params: { client: invalid_attributes }, headers: valid_headers, as: :json
-        expect(response).to have_http_status(:unprocessable_entity)
-        expect(response.content_type).to match(a_string_including("application/json"))
-      end
-    end
-  end
-
-  describe "DELETE /destroy" do
-    it "destroys the requested client" do
-      client = Client.create! valid_attributes
-      expect {
-        delete client_url(client), headers: valid_headers, as: :json
-      }.to change(Client, :count).by(-1)
-    end
-  end
-end
+      it "renders 

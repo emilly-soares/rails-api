@@ -47,7 +47,7 @@ paths: # Esta seção descreve os endpoints da API e as operações permitidas e
               schema: # O esquema do corpo da resposta
                 type: array # tipo do retorno: array, object ...
                 items: # lista de itens
-                  $ref: '#/components/schemas/Client' # Referência pra o local onde estão descritos os itens
+                  $ref: '#/components/schemas/Clients' # Referência pra o local onde estão descritos os itens
 
 components: # Esta seção define esquemas reutilizáveis e outros componentes da API
   schemas: # Define os componentes reutilizaveis
@@ -62,8 +62,8 @@ components: # Esta seção define esquemas reutilizáveis e outros componentes d
           type: string
           example: Synergistic Linen Table
           description: Nome do produto
-          
-    Client: # Componente
+
+    Clients: # Componente
       type: object # Tipo de dado
       properties: # Definição do início de uma lista
         id: # Atributo
@@ -72,13 +72,13 @@ components: # Esta seção define esquemas reutilizáveis e outros componentes d
           description: Identificação do produto # Definição do atributo
         nome:
           type: string
-          example: Synergistic Linen Table
+          example: "Synergistic Linen Table"
           description: Nome do cliente
         sobrenome:
           type: string
-          example: Synergistic Linen Table
+          example: "Synergistic Linen Table"
           description: Sobrenome do cliente
         endereco:
           type: string
-          example: Synergistic Linen Table
+          example: "Synergistic Linen Table"
           description: Nome do cliente
