@@ -11,9 +11,9 @@ RSpec.describe "/clients", type: :request do
 
   let(:invalid_attributes) {
     {
-      nome: "123",
-      sobrenome: "45464",
-      endereco: "12",
+      nome: "",
+      sobrenome: "",
+      endereco: "",
     }
   }
 
@@ -99,6 +99,3 @@ RSpec.describe "/clients", type: :request do
         expect(response.content_type).to match(a_string_including("application/json"))
       end
     end
-
-    context "with invalid parameters" do
-      it "renders 
